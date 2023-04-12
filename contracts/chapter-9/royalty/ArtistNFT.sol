@@ -7,9 +7,11 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract ArtistNFT is ERC721URIStorage, ERC721Enumerable, ERC721Royalty {
+contract ArtistNFT is ERC721URIStorage, ERC721Enumerable,ERC721Royalty {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+
+
  
     constructor() ERC721("ArtistNFT", "AN") {
        
@@ -25,8 +27,10 @@ contract ArtistNFT is ERC721URIStorage, ERC721Enumerable, ERC721Royalty {
         _setTokenURI(newItemId, tokenURI);
 
         _tokenIds.increment();
+        _setTokenRoyalty(newItemId, artist, 200);
         return newItemId;
     }
+    
 
     function _beforeTokenTransfer(
         address from,
